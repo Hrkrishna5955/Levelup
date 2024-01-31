@@ -18,5 +18,6 @@ node {
     {
         deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://172.31.83.134:8080')], contextPath: 'prodapp', war: '**\\*.war'
     }
+    encho "test"
     
 }
