@@ -14,6 +14,6 @@ stage('Build') {
      sh 'java -jar /var/lib/jenkins/workspace/scripted_pipeline/testing.jar'
  }
     stage('Delivery'){
-        deploy adapters: [tomcat9(credtialsId: 'tomcat-credentialis', path: '', url: 'http://172.31.19.88:8080')], contextPath: 'Prodapp', war: '**\\*.war'
+        deploy adapters: [tomcat9(credtialsId: 'tomcat-credentialis', path: '', url: 'http://172.31.19.88:8080')], contextPath: 'prodapp', war: '**\\*.war'
     }
 }
