@@ -1,26 +1,27 @@
 node {
-   
-    
+   // parameters {
+  //string defaultValue: 'Dev', description: 'Choose Environment', name: 'Environment'
+  
+//}
     stage('git checkout') {
-    git 'https://github.com/AnupamaSoma/maven-project.git'
+    git 'https://github.com/Hrkrishna5955/pipeline.git'
 }
-   stage('Build') {
+stage('Build') {
     sh 'mvn package'
 }
-   stage('Deployment')
-   {
-       deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://172.31.82.183:8080')], contextPath: 'qaapp', war: '**\\*.war'
-   }
-   stage('testing')
-    {
-        git 'https://github.com/AnupamaSoma/FunctionalTesting.git'
-        sh 'java -jar /var/lib/jenkins/workspace/scripted_pipeline/testing.jar'
-    }
-    stage('Delivery')
-    {
-        deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://172.31.83.134:8080')], contextPath: 'prodapp', war: '**\\*.war'
-       
-        
+  stage('Deployment')
+{
+    deploy adapters: [tomcat9(credentialsId: 'tomcat-credentialis', path: '', url: 'http://172.31.29.21:8080')], contextPath: 'qaapp', war: '**\\*.war'
+}
+ stage('testing'){
+     git 'https://github.com/Hrkrishna5955/Functional-Testing.git'
+     sh 'java -jar /var/lib/jenkins/workspace/scripted_pipeline@2/testing.jar'
+ }
+    stage('delivery'){
+      deploy adapters: [tomcat9(credentialsId: 'tomcat-credentialis', path: '', url: 'http://172.31.19.88:8080')], contextPath: 'prodapp', war: '**\\*.war'
+      //echo "${params.Environment}"
     }
     
 }
+    
+
